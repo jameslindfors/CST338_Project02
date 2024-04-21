@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">cst338_project02</string>
+    <string name="app_name">EV Finder</string>
+    <string name="loginBtnText">Login</string>
+    <string name="createAccountBtnText">Create Account</string>
+    <string name="loginUsernamePlaceholder">Username</string>
+    <string name="loginPasswordPlaceholder">Username</string>
+    <string name="loginTitleText">Login</string>
 </resources>
