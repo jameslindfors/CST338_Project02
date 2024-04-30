@@ -32,8 +32,8 @@ public abstract class AppDatabase extends RoomDatabase {
                 // Prepopulate the data
                 UserDAO dao = instance.userDao();
                 dao.deleteAll();
-                User user1 = new User("testuser1","testuser1", false);
 
+                User user1 = new User("testuser1","testuser1", false);
                 User user2 = new User("admin2","admin2", true);
 
                 dao.insert(user1);
