@@ -6,4 +6,7 @@
     <string name="loginUsernamePlaceholder">Username</string>
     <string name="loginPasswordPlaceholder">Username</string>
     <string name="loginTitleText">Login</string>
+    <string name="home_tab">Home</string>
+    <string name="profile_tab">Profile</string>
+    <string name="map_api_key">AIzaSyDACQOIVU9MvkSMDtc8v9c5d-NDH6SrUO8</string>
 </resources>
