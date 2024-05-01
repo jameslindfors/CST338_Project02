@@ -1,13 +1,11 @@
 package com.cst338.project02;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import com.cst338.project02.databinding.ActivityMainBinding;
-
 
 public class MainActivity extends AppCompatActivity {
 
