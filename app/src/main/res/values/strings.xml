@@ -12,4 +12,6 @@
     <string name = "registerTitleText">Register</string>
     <string name = "goRegisterPage">Register Page</string>
     <string name = "goLoginPage">Login Page</string>
+    <string name = "deleteAccount">Delete Account</string>
+
 </resources>

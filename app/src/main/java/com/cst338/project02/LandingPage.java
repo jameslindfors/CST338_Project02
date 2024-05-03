@@ -26,6 +26,9 @@ public class LandingPage extends AppCompatActivity {
 
         setContentView(view);
 
+        binding.userName.setText(getIntent().getStringExtra("USERNAME"));
+
+
         if (!canAccessLocation()) {
             ActivityCompat.requestPermissions(this, new String[]{
                     android.Manifest.permission.ACCESS_COARSE_LOCATION,
