@@ -33,6 +33,26 @@ public class ProfileTab extends Fragment {
             }
         });
 
+        Button deleteAccount = view.findViewById(R.id.deleteAccount);
+        deleteAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AppDatabase db = AppDatabase.getInstance(getContext());
+                        UserDAO dao = db.userDao();
+
+
+//                        dao.deleteUser();
+
+                    }
+                }).start();
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         return view;
