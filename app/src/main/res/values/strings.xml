@@ -8,4 +8,5 @@
     <string name="loginTitleText">Login</string>
     <string name="home_tab">Home</string>
     <string name="profile_tab">Profile</string>
+    <string name="logoutText">Logout</string>
 </resources>

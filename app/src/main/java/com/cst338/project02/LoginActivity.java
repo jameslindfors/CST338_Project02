@@ -42,13 +42,14 @@ public class LoginActivity extends AppCompatActivity {
     private void attemptLogin(String username, String password) {
         System.out.println(username + "  " + password + " LOGGING ING");
         List<User> userData = userDAO.loginUser(username, password);
-        if(userData.size() > 0){
+        System.out.println(userData);
+//        if(userData.size() > 0){
             Intent intent = new Intent(LoginActivity.this, LandingPage.class);
             startActivity(intent);
             finish();
-        }else{
-            binding.loginPassword.setError("Invalid credentials");
-        }
+//        }else{
+//            binding.loginPassword.setError("Invalid credentials");
+//        }
     }
 
 }
