@@ -23,25 +23,6 @@ public abstract class AppDatabase extends RoomDatabase {
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     public abstract UserDAO userDao();
 
-
-    private static final RoomDatabase.Callback addDefaultValues = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            databaseWriteExecutor.execute(() -> {
-                // Prepopulate the data
-                UserDAO dao = instance.userDao();
-                dao.deleteAll();
-
-                User user1 = new User("testuser1","testuser1", false);
-                User user2 = new User("admin2","admin2", true);
-
-                dao.insert(user1);
-                dao.insert(user2);
-            });
-        }
-    };
-
     public static AppDatabase getInstance(Context context){
         if (instance == null){
             synchronized (AppDatabase.class){
@@ -55,4 +36,30 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return instance;
     }
+
+
+    private static final RoomDatabase.Callback addDefaultValues = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            databaseWriteExecutor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    // Prepopulate the data
+                    UserDAO dao = instance.userDao();
+//                    dao.deleteAll();
+
+                    User user1 = new User("testuser1","testuser1", false);
+                    User user2 = new User("admin2","admin2", true);
+
+                    dao.insert(user1);
+                    dao.insert(user2);
+                }
+            });
+
+
+        }
+    };
+
+
 }
