@@ -39,7 +39,9 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 }).start();
                 Intent goHomePage = new Intent(getApplicationContext(), LandingPage.class);
+
                 goHomePage.putExtra("USERNAME", userUsername);
+
                 startActivity(goHomePage);
             }
         });
