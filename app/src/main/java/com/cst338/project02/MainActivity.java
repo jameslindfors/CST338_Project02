@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         repository = UserRepository.getRepository(getApplication());
 
 
+        AppDatabase.getInstance(getApplicationContext());
         binding.loginBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -34,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
+        });
+
+        binding.createAccountBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
         });
     }
 
