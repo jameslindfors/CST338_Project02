@@ -3,8 +3,8 @@
     <string name="app_subheading">Find and Rate EV Chargers Near You</string>
     <string name="loginBtnText">Login</string>
     <string name="createAccountBtnText">Create Account</string>
-    <string name="loginUsernamePlaceholder">Username</string>
-    <string name="loginPasswordPlaceholder">Username</string>
+    <string name="usernamePlaceholder">Username</string>
+    <string name="passwordPlaceholder">Password</string>
     <string name="loginTitleText">Login</string>
     <string name="home_tab">Home</string>
     <string name="profile_tab">Profile</string>
@@ -13,4 +13,5 @@
     <string name="goRegisterPage">Register Page</string>
     <string name="goLoginPage">Login Page</string>
     <string name="deleteAccount">Delete Account</string>
+    <string name="list_nearby_chargers">List Nearby Chargers</string>
 </resources>
