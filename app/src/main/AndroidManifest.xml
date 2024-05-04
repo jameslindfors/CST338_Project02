@@ -20,9 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cst338_project02">
         <activity
+            android:name=".ChargerList"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
-
         <activity
             android:name=".LandingPage"
             android:exported="false" />
