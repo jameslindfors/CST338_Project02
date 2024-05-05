@@ -3,6 +3,7 @@ package com.cst338.project02;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -25,6 +26,12 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String userUsername = binding.registerUsername.getText().toString();
                 String userPassword = binding.registerPassword.getText().toString();
+
+                SharedPreferences preferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("username", userUsername);
+                editor.apply();
+
 
                 new Thread(new Runnable() {
                     @Override
