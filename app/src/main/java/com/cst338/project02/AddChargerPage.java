@@ -21,6 +21,17 @@ public class AddChargerPage extends AppCompatActivity {
 
         setContentView(view);
 
+        binding.addChargerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String chargerName = binding.chargerNameText.getText().toString();
+                String chargerAddress = binding.chargerAddress.getText().toString();
+                String chargerCost = binding.chargerCost.getText().toString();
+
+
+            }
+        });
+
         binding.navigation.setOnItemSelectedListener(item -> {
             Intent intent;
             if (item.getItemId() == R.id.navigation_home) {
