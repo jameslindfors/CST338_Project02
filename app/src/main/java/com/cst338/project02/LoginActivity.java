@@ -3,6 +3,7 @@ package com.cst338.project02;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
@@ -48,6 +49,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private void attemptLogin(String username, String password) {
         System.out.println(username + "  " + password + " LOGGING ING");
+
+        SharedPreferences preferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("username", username);
+        editor.apply();
 
 
         new Thread(new Runnable() {

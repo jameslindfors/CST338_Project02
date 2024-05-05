@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -25,7 +26,9 @@ public class LandingPage extends AppCompatActivity {
 
         setContentView(view);
 
-        binding.userName.setText(getIntent().getStringExtra("USERNAME"));
+        SharedPreferences preferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        String username = preferences.getString("username", "DefaultUser");
+        binding.userName.setText(username);
 
         binding.navigation.setOnItemSelectedListener(item -> {
             Intent intent;
