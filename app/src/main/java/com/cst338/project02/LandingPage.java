@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
+
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -64,6 +65,13 @@ public class LandingPage extends AppCompatActivity {
             }
         });
 
+
+        binding.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent chargerList = new Intent(LandingPage.this, ChargerList.class);
+                startActivity(chargerList);            }
+        });
 
 
         if (!canAccessLocation()) {
