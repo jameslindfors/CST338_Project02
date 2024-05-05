@@ -23,6 +23,13 @@ public class AccountSettings extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        binding.changeUsernameBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
 
         binding.deleteAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override

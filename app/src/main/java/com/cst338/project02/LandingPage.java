@@ -32,8 +32,10 @@ public class LandingPage extends AppCompatActivity {
         boolean isAdmin = preferences.getBoolean("isAdmin", false);
         if(isAdmin){
             System.out.println("USER IS THE ADMIN");
+            binding.adminButton.setVisibility(View.VISIBLE);
         }else{
             System.out.println("USER IS NOT THE ADMIN");
+            binding.adminButton.setVisibility(View.INVISIBLE);
         }
 
         binding.userName.setText(username);
