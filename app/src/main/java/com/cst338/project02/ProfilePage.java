@@ -22,6 +22,20 @@ public class ProfilePage extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+
+
+        binding.accountSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goAccountSettings = new Intent(ProfilePage.this, AccountSettings.class);
+                startActivity(goAccountSettings);
+            }
+        });
+
+
+
+
+
         binding.navigation.setOnItemSelectedListener(item -> {
             Intent intent;
             if (item.getItemId() == R.id.navigation_home) {
