@@ -1,6 +1,7 @@
 package com.cst338.project02;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -26,7 +27,8 @@ public class AccountSettings extends AppCompatActivity {
         binding.changeUsernameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent goEditUsernamePage = new Intent(AccountSettings.this, EditUsername.class);
+                startActivity(goEditUsernamePage);
             }
         });
 
