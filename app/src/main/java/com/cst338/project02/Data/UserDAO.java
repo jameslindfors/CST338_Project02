@@ -4,10 +4,6 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-
-import com.cst338.project02.Data.AppDatabase;
-import com.cst338.project02.Data.User;
-
 import java.util.List;
 
 @Dao
