@@ -22,7 +22,7 @@ public interface UserDAO {
     @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE username = :username")
     List<User> getUsername(String username);
 
-    @Query("UPDATE user_log SET username = :newUsername WHERE id = :userId")
+    @Query("UPDATE " + AppDatabase.USER_TABLE + " SET username = :newUsername WHERE id = :userId")
     void updateUsername(int userId, String newUsername);
 
     @Query("SELECT * FROM " + AppDatabase.USER_TABLE + " WHERE id = :id")

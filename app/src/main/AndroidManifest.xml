@@ -20,6 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cst338_project02">
         <activity
+            android:name=".EditUsername"
+            android:exported="false" />
+        <activity
             android:name=".AccountSettings"
             android:exported="false" />
         <activity
