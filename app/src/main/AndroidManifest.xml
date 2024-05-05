@@ -23,6 +23,18 @@
             android:name=".ChargerList"
             android:exported="false" />
         <activity
+            android:name=".EditUsername"
+            android:exported="false" />
+        <activity
+            android:name=".AccountSettings"
+            android:exported="false" />
+        <activity
+            android:name=".AddChargerPage"
+            android:exported="false" />
+        <activity
+            android:name=".ProfilePage"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity

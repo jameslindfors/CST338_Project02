@@ -14,4 +14,5 @@
     <string name="goLoginPage">Login Page</string>
     <string name="deleteAccount">Delete Account</string>
     <string name="list_nearby_chargers">List Nearby Chargers</string>
+    <string name="accountSettings">Account Settings</string>
 </resources>

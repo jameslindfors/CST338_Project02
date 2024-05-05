@@ -3,6 +3,7 @@ package com.cst338.project02;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -26,6 +27,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String userUsername = binding.registerUsername.getText().toString();
                 String userPassword = binding.registerPassword.getText().toString();
 
+
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -34,6 +37,17 @@ public class RegisterActivity extends AppCompatActivity {
                         System.out.println(userUsername);
                         System.out.println(userPassword);
                         User newUser = new User(userUsername, userPassword, false);
+
+                        SharedPreferences preferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("username", userUsername);
+                        editor.putInt("userID", newUser.getId());
+                        editor.putBoolean("isAdmin", newUser.isAdmin());
+                        editor.apply();
+
+
+
+
                         dao.insert(newUser);
 
                     }

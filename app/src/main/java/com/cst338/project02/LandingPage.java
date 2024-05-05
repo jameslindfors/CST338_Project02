@@ -5,9 +5,12 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
+
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+
 
 import com.cst338.project02.databinding.ActivityLandingPageBinding;
 
@@ -24,7 +27,44 @@ public class LandingPage extends AppCompatActivity {
 
         setContentView(view);
 
-        binding.userName.setText(getIntent().getStringExtra("USERNAME"));
+        SharedPreferences preferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+        String username = preferences.getString("username", "DefaultUser");
+//        int id = preferences.getInt("userID", -1);
+        boolean isAdmin = preferences.getBoolean("isAdmin", false);
+        if(isAdmin){
+            System.out.println("USER IS THE ADMIN");
+            binding.adminButton.setVisibility(View.VISIBLE);
+        }else{
+            System.out.println("USER IS NOT THE ADMIN");
+            binding.adminButton.setVisibility(View.INVISIBLE);
+        }
+
+        binding.userName.setText(username);
+
+        binding.navigation.setOnItemSelectedListener(item -> {
+            Intent intent;
+            if (item.getItemId() == R.id.navigation_home) {
+                intent = new Intent(this, LandingPage.class);
+                startActivity(intent);
+            } else if (item.getItemId() == R.id.navigation_profile) {
+                intent = new Intent(this, ProfilePage.class);
+                startActivity(intent);
+            } else if (item.getItemId() == R.id.navigation_create){
+                intent = new Intent(this, AddChargerPage.class);
+                startActivity(intent);
+            }
+
+            return true;
+        });
+
+        binding.goProfilePage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goProfilePage = new Intent(LandingPage.this, ProfilePage.class);
+                startActivity(goProfilePage);
+            }
+        });
+
 
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
