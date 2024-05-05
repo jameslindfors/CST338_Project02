@@ -1,7 +1,6 @@
-package com.cst338.project02;
+package com.cst338.project02.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -10,9 +9,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
+import com.cst338.project02.Data.AppDatabase;
+import com.cst338.project02.Data.UserDAO;
 import com.cst338.project02.databinding.ActivityAccountSettingsBinding;
 
-public class AccountSettings extends AppCompatActivity {
+public class AccountSettingsActivity extends AppCompatActivity {
 
     ActivityAccountSettingsBinding binding;
     @Override
@@ -27,7 +28,7 @@ public class AccountSettings extends AppCompatActivity {
         binding.changeUsernameBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goEditUsernamePage = new Intent(AccountSettings.this, EditUsername.class);
+                Intent goEditUsernamePage = new Intent(AccountSettingsActivity.this, EditUsernameActivity.class);
                 startActivity(goEditUsernamePage);
             }
         });
@@ -37,7 +38,7 @@ public class AccountSettings extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(AccountSettings.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(AccountSettingsActivity.this);
                 builder.setTitle("Delete Account");
                 builder.setMessage("Are you sure you want to delete your account?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -65,7 +66,7 @@ public class AccountSettings extends AppCompatActivity {
         binding.backButtonProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goProfilePage = new Intent(AccountSettings.this, ProfilePage.class);
+                Intent goProfilePage = new Intent(AccountSettingsActivity.this, ProfileActivity.class);
                 startActivity(goProfilePage);
             }
         });
@@ -85,7 +86,7 @@ public class AccountSettings extends AppCompatActivity {
 
             }
         }).start();
-        Intent intent = new Intent(AccountSettings.this, MainActivity.class);
+        Intent intent = new Intent(AccountSettingsActivity.this, MainActivity.class);
         startActivity(intent);
     }
 }

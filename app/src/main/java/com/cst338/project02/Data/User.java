@@ -1,8 +1,10 @@
-package com.cst338.project02;
+package com.cst338.project02.Data;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import com.cst338.project02.Data.AppDatabase;
 
 @Entity(tableName = AppDatabase.USER_TABLE)
 public class User {

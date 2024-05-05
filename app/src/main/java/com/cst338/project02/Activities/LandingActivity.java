@@ -1,15 +1,12 @@
-package com.cst338.project02;
+package com.cst338.project02.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.View;
@@ -20,7 +17,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.cst338.project02.databinding.ActivityLandingPageBinding;
+import com.cst338.project02.Adapters.ChargerListRow_Adapter;
+import com.cst338.project02.Models.ChargerRowModel;
+import com.cst338.project02.R;
+import com.cst338.project02.databinding.ActivityLandingBinding;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,9 +28,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LandingPage extends AppCompatActivity {
+public class LandingActivity extends AppCompatActivity {
 
-    ActivityLandingPageBinding binding;
+    ActivityLandingBinding binding;
 
     ArrayList<Pair<String, String>> stationDetails = new ArrayList<>();
     ArrayList<ChargerRowModel> chargerRowModels = new ArrayList<>();
@@ -41,7 +41,7 @@ public class LandingPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityLandingPageBinding.inflate(getLayoutInflater());
+        binding = ActivityLandingBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
 
         setContentView(view);
@@ -66,10 +66,10 @@ public class LandingPage extends AppCompatActivity {
         binding.navigation.setOnItemSelectedListener(item -> {
             Intent intent;
             if (item.getItemId() == R.id.navigation_home) {
-                intent = new Intent(this, LandingPage.class);
+                intent = new Intent(this, LandingActivity.class);
                 startActivity(intent);
             } else if (item.getItemId() == R.id.navigation_profile) {
-                intent = new Intent(this, ProfilePage.class);
+                intent = new Intent(this, ProfileActivity.class);
                 startActivity(intent);
             } else if (item.getItemId() == R.id.navigation_create){
                 intent = new Intent(this, AddChargerPage.class);

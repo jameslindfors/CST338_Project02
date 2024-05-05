@@ -1,4 +1,4 @@
-package com.cst338.project02;
+package com.cst338.project02.Data;
 
 import android.content.Context;
 

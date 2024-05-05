@@ -1,4 +1,4 @@
-package com.cst338.project02;
+package com.cst338.project02.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
+import com.cst338.project02.Models.ChargerRowModel;
+import com.cst338.project02.R;
+
 import java.util.ArrayList;
 
 public class ChargerListRow_Adapter extends RecyclerView.Adapter<ChargerListRow_Adapter.ViewHolder> {

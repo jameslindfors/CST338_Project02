@@ -21,28 +21,28 @@
             android:name=".ChargerList"
             android:exported="false" />
         <activity
-            android:name=".EditUsername"
+            android:name=".Activities.EditUsernameActivity"
             android:exported="false" />
         <activity
-            android:name=".AccountSettings"
+            android:name=".Activities.AccountSettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".AddChargerPage"
+            android:name=".Activities.AddChargerPage"
             android:exported="false" />
         <activity
-            android:name=".ProfilePage"
+            android:name=".Activities.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".LandingPage"
+            android:name=".Activities.LandingActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
