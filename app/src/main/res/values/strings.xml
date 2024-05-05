@@ -4,7 +4,7 @@
     <string name="loginBtnText">Login</string>
     <string name="createAccountBtnText">Create Account</string>
     <string name="loginUsernamePlaceholder">Username</string>
-    <string name="loginPasswordPlaceholder">Username</string>
+    <string name="loginPasswordPlaceholder">Password</string>
     <string name="loginTitleText">Login</string>
     <string name="home_tab">Home</string>
     <string name="profile_tab">Profile</string>

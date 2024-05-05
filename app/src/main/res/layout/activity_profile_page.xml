@@ -11,20 +11,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Profile Page"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/accountSettings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="200dp"
+        android:textSize="25dp"/>
 
     <Button
         android:id="@+id/accountSettings"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="165dp"
+        android:layout_height="55dp"
         android:text="@string/accountSettings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileTitle" />
+
+    <Button
+        android:id="@+id/logoutBtn"
+        android:layout_width="174dp"
+        android:layout_height="52dp"
+        android:layout_marginBottom="100dp"
+        android:text="@string/logoutText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountSettings" />
 
     <FrameLayout
         android:id="@+id/frame_container"
@@ -32,7 +45,7 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/navigation"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-51dp" />
+        tools:layout_editor_absoluteY="-1dp" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"

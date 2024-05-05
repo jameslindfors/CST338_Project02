@@ -23,6 +23,13 @@ public class ProfilePage extends AppCompatActivity {
         setContentView(view);
 
 
+        binding.logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent logoutUser = new Intent(ProfilePage.this, MainActivity.class);
+                startActivity(logoutUser);
+            }
+        });
 
         binding.accountSettings.setOnClickListener(new View.OnClickListener() {
             @Override

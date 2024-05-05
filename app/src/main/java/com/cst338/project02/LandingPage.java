@@ -28,6 +28,14 @@ public class LandingPage extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("userInfo", MODE_PRIVATE);
         String username = preferences.getString("username", "DefaultUser");
+//        int id = preferences.getInt("userID", -1);
+        boolean isAdmin = preferences.getBoolean("isAdmin", false);
+        if(isAdmin){
+            System.out.println("USER IS THE ADMIN");
+        }else{
+            System.out.println("USER IS NOT THE ADMIN");
+        }
+
         binding.userName.setText(username);
 
         binding.navigation.setOnItemSelectedListener(item -> {

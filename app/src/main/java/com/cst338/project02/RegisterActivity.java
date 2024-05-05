@@ -27,10 +27,6 @@ public class RegisterActivity extends AppCompatActivity {
                 String userUsername = binding.registerUsername.getText().toString();
                 String userPassword = binding.registerPassword.getText().toString();
 
-                SharedPreferences preferences = getSharedPreferences("userInfo", MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("username", userUsername);
-                editor.apply();
 
 
                 new Thread(new Runnable() {
@@ -41,6 +37,17 @@ public class RegisterActivity extends AppCompatActivity {
                         System.out.println(userUsername);
                         System.out.println(userPassword);
                         User newUser = new User(userUsername, userPassword, false);
+
+                        SharedPreferences preferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("username", userUsername);
+                        editor.putInt("userID", newUser.getId());
+                        editor.putBoolean("isAdmin", newUser.isAdmin());
+                        editor.apply();
+
+
+
+
                         dao.insert(newUser);
 
                     }

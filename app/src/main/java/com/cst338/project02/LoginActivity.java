@@ -50,12 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     private void attemptLogin(String username, String password) {
         System.out.println(username + "  " + password + " LOGGING ING");
 
-        SharedPreferences preferences = getSharedPreferences("userInfo", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("username", username);
-        editor.apply();
-
-
+        
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -63,7 +58,19 @@ public class LoginActivity extends AppCompatActivity {
                         .getInstance(LoginActivity.this)
                         .userDao().loginUser(username, password);
                 System.out.println(user);
+
+
+
                 if(user != null){
+                    SharedPreferences preferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("username", username);
+                    editor.putInt("userID", user.getId());
+                    editor.putBoolean("isAdmin", user.isAdmin());
+                    editor.apply();
+
+
+
                     Intent goHomePage = new Intent(LoginActivity.this, LandingPage.class);
                     goHomePage.putExtra("USERNAME",username);
                     startActivity(goHomePage);
