@@ -18,6 +18,10 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+import com.cst338.project02.Data.AppDatabase;
+import com.cst338.project02.Data.User;
+import com.cst338.project02.Data.UserDAO;
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserDbTest {
