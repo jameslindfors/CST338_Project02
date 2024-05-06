@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 
@@ -37,10 +39,6 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(goAccountSettings);
             }
         });
-
-
-
-
 
         binding.navigation.setOnItemSelectedListener(item -> {
             Intent intent;

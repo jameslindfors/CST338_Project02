@@ -9,6 +9,8 @@ import android.content.SharedPreferences;
 
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 
@@ -65,6 +67,9 @@ public class LandingActivity extends AppCompatActivity {
             System.out.println("USER IS NOT THE ADMIN");
             binding.adminButton.setVisibility(View.INVISIBLE);
         }
+
+        String greeting = "Welcome, " + username;
+        binding.landingGreeting.setText(greeting);
 
         binding.navigation.setOnItemSelectedListener(item -> {
             Intent intent;
