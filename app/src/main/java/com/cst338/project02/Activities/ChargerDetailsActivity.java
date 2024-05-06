@@ -2,6 +2,7 @@ package com.cst338.project02.Activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import com.android.volley.toolbox.Volley;
 import com.cst338.project02.Data.AppDatabase;
 import com.cst338.project02.Data.Favorites;
 import com.cst338.project02.Data.FavoritesDAO;
+import com.cst338.project02.Data.Ratings;
 import com.cst338.project02.databinding.ActivityChargerDetailsBinding;
 
 import org.json.JSONObject;
@@ -55,6 +57,8 @@ public class ChargerDetailsActivity extends AppCompatActivity {
             binding.stationLocation.setText(stationLocation);
         }
 
+        getStationRating();
+
         favoritesDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.FAVORITES_TABLE)
                         .allowMainThreadQueries()
                                 .build().favoritesDAO();
@@ -69,12 +73,20 @@ public class ChargerDetailsActivity extends AppCompatActivity {
         binding.favoriteStation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                favoriteCharger();
+                favoriteStation();
             }
         });
+
+        binding.setRatingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setStationRating();
+            }
+        });
+
     }
 
-    private void favoriteCharger() {
+    private void favoriteStation() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -87,6 +99,34 @@ public class ChargerDetailsActivity extends AppCompatActivity {
         }).start();
 
         Toast.makeText(this, "Added Station to Favorites", Toast.LENGTH_SHORT).show();
+    }
+
+    private void getStationRating() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Ratings stationRating = AppDatabase.getInstance(ChargerDetailsActivity.this)
+                        .ratingsDAO().getChargerRating(stationId);
+                if (stationRating == null) {
+                    AppDatabase.getInstance(ChargerDetailsActivity.this)
+                            .ratingsDAO().insert(new Ratings(stationId, 0));
+                } else {
+                    binding.ratingInput.setText(String.valueOf(stationRating.getRating()));
+                }
+
+            }
+        }).start();
+    }
+
+    private void setStationRating() {
+       new Thread(new Runnable() {
+           @Override
+           public void run() {
+               Editable rating = binding.ratingInput.getText();
+               AppDatabase.getInstance(ChargerDetailsActivity.this)
+                       .ratingsDAO().updateChargerRating(stationId, Integer.parseInt(String.valueOf(rating)));
+           }
+       }).start();
     }
 
     private void requestChargerData(int stationId) throws IOException {
