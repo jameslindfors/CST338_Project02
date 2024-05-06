@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.cst338.project02.Data.AppDatabase;
 import com.cst338.project02.Data.User;
@@ -54,36 +55,53 @@ public class LoginActivity extends AppCompatActivity {
     private void attemptLogin(String username, String password) {
         System.out.println(username + "  " + password + " LOGGING ING");
 
-        
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                User user = AppDatabase
-                        .getInstance(LoginActivity.this)
-                        .userDao().loginUser(username, password);
-                System.out.println(user);
+        if(username.isEmpty()){
+            invalidUsername();
+        }else if (password.isEmpty()){
+            invalidPassword();
+        }else {
 
 
-
-                if(user != null){
-                    SharedPreferences preferences = getSharedPreferences("userInfo", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("username", username);
-                    editor.putInt("userID", user.getId());
-                    editor.putBoolean("isAdmin", user.isAdmin());
-                    editor.apply();
-
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    User user = AppDatabase
+                            .getInstance(LoginActivity.this)
+                            .userDao().loginUser(username, password);
+                    System.out.println(user);
 
 
-                    Intent goHomePage = new Intent(LoginActivity.this, LandingActivity.class);
-                    goHomePage.putExtra("USERNAME",username);
-                    startActivity(goHomePage);
+                    if (user != null) {
+                        SharedPreferences preferences = getSharedPreferences("userInfo", MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putString("username", username);
+                        editor.putInt("userID", user.getId());
+                        editor.putBoolean("isAdmin", user.isAdmin());
+                        editor.apply();
+
+
+                        Intent goHomePage = new Intent(LoginActivity.this, LandingActivity.class);
+                        goHomePage.putExtra("USERNAME", username);
+                        startActivity(goHomePage);
+                    }else{
+                        wrongCredential();
+                    }
                 }
-            }
-        }).start();
+            }).start();
+        }
 
 
 
+    }
+
+    public void invalidUsername(){
+        Toast.makeText(this, "Username is empty. Enter valid username", Toast.LENGTH_SHORT).show();
+    }
+    public void invalidPassword(){
+        Toast.makeText(this, "Password is empty. Enter valid password", Toast.LENGTH_SHORT).show();
+    }
+    public void wrongCredential(){
+        Toast.makeText(this, "Username or Password is incorrect try again.", Toast.LENGTH_SHORT).show();
     }
 
 }

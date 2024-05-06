@@ -7,6 +7,8 @@ import static org.junit.Assert.assertNotNull;
 import android.content.Context;
 
 import androidx.room.Room;
+import androidx.test.core.app.ApplicationProvider;
+
 import org.mockito.junit.MockitoJUnitRunner;
 
 import org.junit.After;
@@ -14,9 +16,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+
+import com.cst338.project02.Data.AppDatabase;
+import com.cst338.project02.Data.User;
+import com.cst338.project02.Data.UserDAO;
 
 import com.cst338.project02.Data.AppDatabase;
 import com.cst338.project02.Data.User;
@@ -33,7 +41,10 @@ public class UserDbTest {
     @Before
     public void createDb() {
 
-        userDb = Room.inMemoryDatabaseBuilder(mockContext, AppDatabase.class).allowMainThreadQueries().build();
+        mockContext = mock(Context.class);
+
+
+        userDb = Room.inMemoryDatabaseBuilder(mockContext, AppDatabase.class).fallbackToDestructiveMigration().build();
         userDao = userDb.userDao();
 
     }
@@ -44,9 +55,15 @@ public class UserDbTest {
     }
 
     @Test
-    public void insertAndRetreiveUser() {
+    public void tempTest(){
+        assertEquals(1,1+1-1);
+    }
+    @Test
+    public void insertAndRetreiveUser(){
         User user = new User("testUser", "testPass", false);
+
         userDao.insert(user);
+
 
         List<User> foundUsers = userDao.getUsername("testUser");
         assertNotNull(foundUsers);
@@ -57,10 +74,15 @@ public class UserDbTest {
     @Test
     public void loginUser() {
         User user = new User("userLogin", "userPass", true);
-        userDao.insert(user);
+
+            userDao.insert(user);
+
+
 
         User foundUser = userDao.loginUser("userLogin", "userPass");
+
         assertNotNull(foundUser);
+
     }
 
     @Test
