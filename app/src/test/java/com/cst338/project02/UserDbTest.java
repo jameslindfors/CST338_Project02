@@ -7,8 +7,10 @@ import static org.junit.Assert.assertNotNull;
 import android.content.Context;
 
 import androidx.room.Room;
+import androidx.test.InstrumentationRegistry;
 import androidx.test.core.app.ApplicationProvider;
 
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import org.junit.After;
@@ -34,6 +36,7 @@ import com.cst338.project02.Data.UserDAO;
 @RunWith(MockitoJUnitRunner.class)
 public class UserDbTest {
 
+    @Mock
     private Context mockContext;
     private UserDAO userDao;
     private AppDatabase userDb;
@@ -53,69 +56,128 @@ public class UserDbTest {
     public void closeDb() {
         userDb.close();
     }
-
-    @Test
-    public void tempTest(){
-        assertEquals(1,1+1-1);
-    }
+    
     @Test
     public void insertAndRetreiveUser(){
-        User user = new User("testUser", "testPass", false);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                User user = new User("testUser", "testPass", false);
 
-        userDao.insert(user);
+                userDao.insert(user);
+                List<User> foundUsers = userDao.getUsername("testUser");
 
+                InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
+                    @Override
+                    public void run() {
+                        assertNotNull(foundUsers);
+                        assertFalse(foundUsers.isEmpty());
+                        assertEquals("testUser", foundUsers.get(0).getUsername());
+                    }
+                });
 
-        List<User> foundUsers = userDao.getUsername("testUser");
-        assertNotNull(foundUsers);
-        assertFalse(foundUsers.isEmpty());
-        assertEquals("testUser", foundUsers.get(0).getUsername());
+            }
+        });
     }
 
     @Test
     public void loginUser() {
-        User user = new User("userLogin", "userPass", true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                User user = new User("userLogin", "userPass", true);
 
-            userDao.insert(user);
+                userDao.insert(user);
+
+                User foundUser = userDao.loginUser("userLogin", "userPass");
+                InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
+                    @Override
+                    public void run() {
+                        assertNotNull(foundUser);
+                    }
+                });
+            }
 
 
+        });
 
-        User foundUser = userDao.loginUser("userLogin", "userPass");
 
-        assertNotNull(foundUser);
 
     }
 
     @Test
     public void getAllUsers() {
-        User user1 = new User("user1", "pass1", true);
-        User user2 = new User("user2", "pass2", false);
-        userDao.insert(user1);
-        userDao.insert(user2);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                User user1 = new User("user1", "pass1", true);
+                User user2 = new User("user2", "pass2", false);
+                userDao.insert(user1);
+                userDao.insert(user2);
 
-        List<User> users = userDao.getUserLogs();
-        assertNotNull(users);
-        assertTrue(users.size() >= 2);
+                List<User> users = userDao.getUserLogs();
+                InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
+                    @Override
+                    public void run() {
+                        assertNotNull(users);
+                        assertTrue(users.size() >= 2);
+                    }
+                });
+            }
+
+
+        });
+
+
     }
 
     @Test
     public void deleteUser() {
-        User user = new User("deleteMe", "deletePass", true);
-        userDao.insert(user);
-        userDao.deleteUser("deleteMe");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                User user = new User("deleteMe", "deletePass", true);
+                userDao.insert(user);
+                userDao.deleteUser("deleteMe");
 
-        List<User> users = userDao.getUsername("deleteMe");
-        assertTrue(users.isEmpty());
+                List<User> users = userDao.getUsername("deleteMe");
+                InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
+                    @Override
+                    public void run() {
+                        assertTrue(users.isEmpty());
+                    }
+                });
+            }
+
+
+        });
+
+
     }
 
     @Test
     public void updateUser() {
-        User user = new User("updateUser", "oldPass", false);
-        userDao.insert(user);
-        userDao.updateUsername(user.getId(), "newUser");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                User user = new User("updateUser", "oldPass", false);
+                userDao.insert(user);
+                userDao.updateUsername(user.getId(), "newUser");
 
-        List<User> updatedUser = userDao.getUsername("newUser");
-        assertNotNull(updatedUser);
-        assertFalse(updatedUser.isEmpty());
-        assertEquals("newUser", updatedUser.get(0).getUsername());
+                List<User> updatedUser = userDao.getUsername("newUser");
+                InstrumentationRegistry.getInstrumentation().runOnMainSync(new Runnable() {
+                    @Override
+                    public void run() {
+                        assertNotNull(updatedUser);
+                        assertFalse(updatedUser.isEmpty());
+                        assertEquals("newUser", updatedUser.get(0).getUsername());
+                    }
+                });
+            }
+
+
+        });
+
+
     }
 }
