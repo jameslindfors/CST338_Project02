@@ -84,6 +84,7 @@ public class LandingActivity extends AppCompatActivity {
     }
 
     private void setUpChargerRowModels() {
+        System.out.println(stationDetails.get(0).get(0));
         for (int i = 0; i < stationDetails.size(); i++) {
             chargerRowModels.add(new ChargerRowModel(Integer.parseInt(stationDetails.get(i).get(0)), stationDetails.get(i).get(1), stationDetails.get(i).get(2)));
         }
