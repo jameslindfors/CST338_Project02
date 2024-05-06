@@ -27,12 +27,15 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LandingActivity extends AppCompatActivity {
 
     ActivityLandingBinding binding;
 
-    ArrayList<Pair<String, String>> stationDetails = new ArrayList<>();
+    ArrayList<ArrayList<String>> stationDetails = new ArrayList<>();
     ArrayList<ChargerRowModel> chargerRowModels = new ArrayList<>();
     String url =
             "https://developer.nrel.gov/api/alt-fuel-stations/v1/nearest?format=json&location=93933&api_key=Wo7p9LICDqpQNQaaU1bOX4h8iiFlDPuuMwCGjfdG";
@@ -82,7 +85,7 @@ public class LandingActivity extends AppCompatActivity {
 
     private void setUpChargerRowModels() {
         for (int i = 0; i < stationDetails.size(); i++) {
-            chargerRowModels.add(new ChargerRowModel(stationDetails.get(i).first, stationDetails.get(i).second));
+            chargerRowModels.add(new ChargerRowModel(Integer.parseInt(stationDetails.get(i).get(0)), stationDetails.get(i).get(1), stationDetails.get(i).get(2)));
         }
 
         RecyclerView recyclerView = findViewById(R.id.chargerDataList);
@@ -101,8 +104,13 @@ public class LandingActivity extends AppCompatActivity {
                             for (int i = 0; i < stations.length(); i++) {
                                 JSONObject obj = stations.getJSONObject(i);
                                 String stationLoc = obj.get("street_address").toString()
-                                        + " " + obj.get("city") + " " + obj.get("zip");
-                                stationDetails.add(new Pair<String, String>(obj.get("station_name").toString(), stationLoc));
+                                        + " " + obj.get("city") + ", " + obj.get("state") + " "
+                                        + obj.get("zip");
+                                stationDetails.add(new ArrayList<>(
+                                        Arrays.asList(obj.getString("id"),
+                                        obj.getString("station_name"),
+                                        stationLoc
+                                        )));
                             }
                             setUpChargerRowModels();
                         } catch (Exception e) {

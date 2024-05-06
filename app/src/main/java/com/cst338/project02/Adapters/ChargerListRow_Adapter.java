@@ -46,7 +46,7 @@ public class ChargerListRow_Adapter extends RecyclerView.Adapter<ChargerListRow_
             @Override
             public void onClick(View v) {
                 Intent chargerDetails = new Intent(context, ChargerDetailsActivity.class);
-                chargerDetails.putExtra("stationId", 123);
+                chargerDetails.putExtra("stationId", chargerRowModels.get(position).getStationId());
                 chargerDetails.putExtra("stationName", chargerRowModels.get(position).getStationName());
                 chargerDetails.putExtra("stationLocation", chargerRowModels.get(position).getStationLocation());
                 context.startActivity(chargerDetails);
