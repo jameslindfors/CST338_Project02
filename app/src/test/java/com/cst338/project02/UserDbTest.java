@@ -32,6 +32,10 @@ import com.cst338.project02.Data.AppDatabase;
 import com.cst338.project02.Data.User;
 import com.cst338.project02.Data.UserDAO;
 
+import com.cst338.project02.Data.AppDatabase;
+import com.cst338.project02.Data.User;
+import com.cst338.project02.Data.UserDAO;
+
 
 @RunWith(MockitoJUnitRunner.class)
 public class UserDbTest {
