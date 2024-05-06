@@ -15,4 +15,7 @@
     <string name="deleteAccount">Delete Account</string>
     <string name="list_nearby_chargers">List Nearby Chargers</string>
     <string name="accountSettings">Account Settings</string>
+    <string name="station_rating">Station Rating:</string>
+    <string name="favorite_station">Favorite Station</string>
+    <string name="set_rating">Set Rating</string>
 </resources>
