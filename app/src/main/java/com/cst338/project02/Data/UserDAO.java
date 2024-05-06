@@ -1,10 +1,8 @@
-package com.cst338.project02;
+package com.cst338.project02.Data;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
-
 
 import java.util.List;
 

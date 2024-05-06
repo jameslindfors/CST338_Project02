@@ -1,4 +1,4 @@
-package com.cst338.project02;
+package com.cst338.project02.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
+import com.cst338.project02.Data.AppDatabase;
+import com.cst338.project02.Data.User;
+import com.cst338.project02.Data.UserDAO;
 import com.cst338.project02.databinding.ActivityRegisterBinding;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -52,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     }
                 }).start();
-                Intent goHomePage = new Intent(getApplicationContext(), LandingPage.class);
+                Intent goHomePage = new Intent(getApplicationContext(), LandingActivity.class);
 
                 goHomePage.putExtra("USERNAME", userUsername);
 

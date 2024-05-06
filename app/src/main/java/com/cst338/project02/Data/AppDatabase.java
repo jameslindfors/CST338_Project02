@@ -1,4 +1,4 @@
-package com.cst338.project02;
+package com.cst338.project02.Data;
 
 import android.content.Context;
 
@@ -11,17 +11,21 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class}, version=1)
+@Database(entities = {User.class, Favorites.class, Ratings.class}, version=1)
 public abstract class AppDatabase extends RoomDatabase {
 
     public static final String USER_TABLE = "user_log";
-    private static final String DATABASE_NAME = "User.DB";
+    public static final String FAVORITES_TABLE = "favorites_log";
+    public static final String RATINGS_TABLE = "ratings_log";
+    private static final String DATABASE_NAME = "ZapMap.DB";
     private static volatile AppDatabase instance;
     private static final Object LOCK = new Object();
     private static final int NUMBER_OF_THREADS = 4;
 
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
     public abstract UserDAO userDao();
+    public abstract FavoritesDAO favoritesDAO();
+    public abstract RatingsDAO ratingsDAO();
 
     public static AppDatabase getInstance(Context context){
         if (instance == null){
@@ -47,7 +51,6 @@ public abstract class AppDatabase extends RoomDatabase {
                 public void run() {
                     // Prepopulate the data
                     UserDAO dao = instance.userDao();
-//                    dao.deleteAll();
 
                     User user1 = new User("testuser1","testuser1", false);
                     User user2 = new User("admin2","admin2", true);
@@ -56,10 +59,6 @@ public abstract class AppDatabase extends RoomDatabase {
                     dao.insert(user2);
                 }
             });
-
-
         }
     };
-
-
 }
