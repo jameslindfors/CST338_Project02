@@ -1,15 +1,21 @@
 package com.cst338.project02.Activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.cst338.project02.Data.AppDatabase;
+import com.cst338.project02.Data.Favorites;
+import com.cst338.project02.Data.FavoritesDAO;
 import com.cst338.project02.databinding.ActivityChargerDetailsBinding;
 
 import org.json.JSONObject;
@@ -19,6 +25,11 @@ import java.io.IOException;
 public class ChargerDetailsActivity extends AppCompatActivity {
 
     ActivityChargerDetailsBinding binding;
+    FavoritesDAO favoritesDAO;
+
+    int stationId;
+    String stationName;
+    String stationLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +41,12 @@ public class ChargerDetailsActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            Integer id = extras.getInt("stationId");
-            String stationName = extras.getString("stationName");
-            String stationLocation = extras.getString("stationLocation");
+            stationId = extras.getInt("stationId");
+            stationName = extras.getString("stationName");
+            stationLocation = extras.getString("stationLocation");
 
             try {
-                requestChargerData(id);
+                requestChargerData(stationId);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -44,12 +55,38 @@ public class ChargerDetailsActivity extends AppCompatActivity {
             binding.stationLocation.setText(stationLocation);
         }
 
+        favoritesDAO = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.FAVORITES_TABLE)
+                        .allowMainThreadQueries()
+                                .build().favoritesDAO();
+
         binding.goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
+        binding.favoriteStation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                favoriteCharger();
+            }
+        });
+    }
+
+    private void favoriteCharger() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SharedPreferences pref = getSharedPreferences("userInfo", MODE_PRIVATE);
+                int userId = pref.getInt("userID", 0 );
+                AppDatabase
+                        .getInstance(ChargerDetailsActivity.this)
+                        .favoritesDAO().insert(new Favorites(userId, stationId, stationName, stationLocation));
+            }
+        }).start();
+
+        Toast.makeText(this, "Added Station to Favorites", Toast.LENGTH_SHORT).show();
     }
 
     private void requestChargerData(int stationId) throws IOException {
