@@ -75,7 +75,7 @@ public class LandingActivity extends AppCompatActivity {
                 intent = new Intent(this, ProfileActivity.class);
                 startActivity(intent);
             } else if (item.getItemId() == R.id.navigation_create){
-                intent = new Intent(this, AddChargerPage.class);
+                intent = new Intent(this, FavoriteStationsActivity.class);
                 startActivity(intent);
             }
 

@@ -51,4 +51,12 @@ public class Favorites {
     public void setChargerId(int chargerId) {
         this.chargerId = chargerId;
     }
+
+    public String getStationName() {
+        return stationName;
+    }
+
+    public String getStationLocation() {
+        return stationLocation;
+    }
 }

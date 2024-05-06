@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cst338_project02">
         <activity
+            android:name=".Activities.FavoriteStationsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activities.ChargerDetailsActivity"
             android:exported="false" />
         <activity
